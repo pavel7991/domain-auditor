@@ -1,0 +1,483 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0a0c10;
+  color: #e6edf3;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #58a6ff, #bc8cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: #8b949e;
+  font-size: 1.1rem;
+}
+
+.input-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.textarea-container label {
+  font-weight: 600;
+  color: #58a6ff;
+  font-size: 1.1rem;
+}
+
+.textarea-container textarea {
+  width: 100%;
+  height: 250px;
+  padding: 1rem;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #e6edf3;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.textarea-container textarea:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+
+.domain-count {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #8b949e;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #238636, #2ea043);
+  color: white;
+}
+
+.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 160, 67, 0.3);
+}
+
+.btn.secondary {
+  background-color: #21262d;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+}
+
+.btn.secondary:hover {
+  background-color: #30363d;
+}
+
+.btn.danger {
+  background-color: #21262d;
+  color: #f85149;
+  border: 1px solid #f85149;
+}
+
+.btn.danger:hover {
+  background-color: rgba(248, 81, 73, 0.1);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #8b949e;
+  font-size: 0.95rem;
+}
+
+.stat-card.match .stat-value {
+  color: #2ea043;
+}
+
+.stat-card.first-only .stat-value {
+  color: #58a6ff;
+}
+
+.stat-card.second-only .stat-value {
+  color: #f85149;
+}
+
+.result-lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.result-card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.result-card h3 {
+  margin-bottom: 1rem;
+  color: #e6edf3;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 0.5rem;
+}
+
+.result-card.matches h3 {
+  color: #2ea043;
+}
+
+.result-card.first-only h3 {
+  color: #58a6ff;
+}
+
+.result-card.second-only h3 {
+  color: #f85149;
+}
+
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.domain-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.domain-grid::-webkit-scrollbar-track {
+  background: #0d1117;
+  border-radius: 4px;
+}
+
+.domain-grid::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+.domain-grid::-webkit-scrollbar-thumb:hover {
+  background: #3d444d;
+}
+
+.domain-item {
+  padding: 0.5rem;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.domain-item.match-item {
+  border-left: 3px solid #2ea043;
+}
+
+.domain-item.first-only-item {
+  border-left: 3px solid #58a6ff;
+}
+
+.domain-item.second-only-item {
+  border-left: 3px solid #f85149;
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+
+  .input-section {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .result-lists {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+
+/* Добавьте в конец файла App.css */
+
+.global-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 0.5rem;
+}
+
+.result-header h3 {
+  margin: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.result-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.icon-btn.copy-btn {
+  color: #58a6ff;
+}
+
+.icon-btn.copy-btn:hover {
+  background-color: rgba(88, 166, 255, 0.1);
+  border-color: #58a6ff;
+}
+
+.icon-btn.delete-btn {
+  color: #f85149;
+}
+
+.icon-btn.delete-btn:hover {
+  background-color: rgba(248, 81, 73, 0.1);
+  border-color: #f85149;
+}
+
+.domain-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+}
+
+.domain-text {
+  flex: 1;
+  word-break: break-all;
+  margin-right: 0.5rem;
+}
+
+.remove-item-btn {
+  background: none;
+  border: none;
+  color: #8b949e;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  line-height: 1;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.remove-item-btn:hover {
+  color: #f85149;
+  background-color: rgba(248, 81, 73, 0.1);
+}
+
+/* Обновляем существующий .domain-item для новой структуры */
+.domain-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.domain-item.match-item {
+  border-left: 3px solid #2ea043;
+}
+
+.domain-item.first-only-item {
+  border-left: 3px solid #58a6ff;
+}
+
+.domain-item.second-only-item {
+  border-left: 3px solid #f85149;
+}
+
+
+/* Добавьте в конец файла App.css */
+
+.textarea-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.textarea-header label {
+  font-weight: 600;
+  color: #58a6ff;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.domain-count-badge {
+  background-color: #21262d;
+  color: #8b949e;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid #30363d;
+}
+
+.domain-item-actions {
+  display: flex;
+  gap: 0.3rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.domain-item:hover .domain-item-actions {
+  opacity: 1;
+}
+
+.small-icon-btn {
+  background: none;
+  border: 1px solid #30363d;
+  border-radius: 3px;
+  padding: 0.15rem 0.3rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.small-icon-btn.copy-btn {
+  color: #58a6ff;
+}
+
+.small-icon-btn.copy-btn:hover {
+  background-color: rgba(88, 166, 255, 0.1);
+  border-color: #58a6ff;
+}
+
+.small-icon-btn.delete-btn {
+  color: #f85149;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.small-icon-btn.delete-btn:hover {
+  background-color: rgba(248, 81, 73, 0.1);
+  border-color: #f85149;
+}
+
+/* Обновляем существующий .domain-item */
+.domain-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.domain-item .domain-text {
+  flex: 1;
+  word-break: break-all;
+  margin-right: 0.5rem;
+}
+
+/* Удаляем старые стили для .domain-item, так как мы их обновили */
